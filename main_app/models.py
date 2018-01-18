@@ -30,10 +30,7 @@ class ProductVersion(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     product = models.ForeignKey(Product, related_name='product_versions')
-    # stock = models.IntegerField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
