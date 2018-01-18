@@ -3,6 +3,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+
 class User(models.Model):
     email = models.CharField(max_length=150)
     fullname = models.CharField(max_length=150)
@@ -10,15 +19,32 @@ class User(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=150)
-    category = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(Category, related_name='products')
+
+    def __str__(self):
+        return self.name
 
 
 class ProductVersion(models.Model):
-    link = models.ForeignKey(Product, related_name='product')
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    product = models.ForeignKey(Product, related_name='product_versions')
+    # stock = models.IntegerField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    # created_at = models.DateTimeField(auto_now_add=True)
+    # updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):
-    name = models.ForeignKey(User, related_name='orders')
-    delivery_address = models.CharField(max_length=150)
-    delivery_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    user = models.ForeignKey('auth.User')
+    shipping_address = models.TextField()
+    shipping_date = models.DateTimeField(auto_now=False)
+    product = models.ForeignKey(Product, related_name='orders')
+
+    def __str__(self):
+        result = self.product + self.user
+        return result

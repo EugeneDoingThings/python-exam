@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8+ocd)(h*o+8fp8^qt%j)gq&8bdcaf=zc4nq@o%^gp))ao3b00'
+SECRET_KEY = 'ybfptucg#6b^3j_mye&c)0-%svme+c16@yylwzo4f7s9ym^7&o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -121,9 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-# REST
-# http://getblimp.github.io/django-rest-framework-jwt/
 
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': (

@@ -1,7 +1,12 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from main_app.models import Product, ProductVersion, Order
+from main_app.models import (
+    Order,
+    Category,
+    Product,
+    ProductVersion,
+)
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -14,6 +19,19 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         exclude = ()
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        exclude = ()
+
+
+class ProductVersionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductVersion
+        exclude = ()
+
 
 
 class UserSerializer(serializers.ModelSerializer):

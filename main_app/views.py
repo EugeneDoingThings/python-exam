@@ -8,15 +8,22 @@ from main_app.serializers import (
     ProductSerializer,
     OrderSerializer,
     UserSerializer,
+    ProductVersionSerializer,
 )
-from main_app.models import Product, Order, User
+from main_app.models import Product, Order, User, ProductVersion
 
 
 class UserView(GenericViewSet,
-               mixins.ListModelMixin,  # TODO: remove after tests are completed
+               # mixins.ListModelMixin,
                mixins.CreateModelMixin):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+
+class ProductVersionView(GenericViewSet,
+               mixins.CreateModelMixin):
+    serializer_class = ProductVersionSerializer
+    queryset = ProductVersion.objects.all()
 
 
 class ProductView(GenericViewSet,
